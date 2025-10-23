@@ -3,6 +3,13 @@
   "Values": {
     "AzureWebJobsStorage": "<your_connection_string>",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "GITHUB_WEBHOOK_SECRET": "<your_github_webhook_secret>"
+    "GITHUB_WEBHOOK_SECRET": "<your_github_webhook_secret>",
+    "AI_PROVIDER": "OpenAI",
+    "AI_API_KEY": "<your_ai_api_key>",
+    "AI_ENDPOINT": "<your_ai_endpoint>",
+    "AI_MODEL": "gpt-4",
+    "ENABLE_ISSUE_ANALYSIS_AGENT": "true",
+    "ENABLE_CODE_REVIEW_AGENT": "true",
+    "ENABLE_PROJECT_MANAGEMENT_AGENT": "true"
   }
 }

@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using System.Linq;
 using GitHubKanbanAgent.Services;
 using GitHubKanbanAgent.Models;
+using GitHubKanbanAgent.AI;
+using GitHubKanbanAgent.AI.Agents;
 
 public static class GitHubWebhookFunction
 {
@@ -105,11 +107,32 @@ public static class GitHubWebhookFunction
         {
             log.LogInformation($"Successfully processed {eventType} event: {result.Message}");
             
-            // Here you can add additional processing like:
-            // - Storing events in a database
-            // - Sending notifications
-            // - Updating external systems
-            // - Triggering workflows
+            // Initialize AI agents
+            var aiAgents = new List<IAIAgent>
+            {
+                new IssueAnalysisAgent(log),
+                new CodeReviewAgent(log),
+                new ProjectManagementAgent(log)
+            };
+            
+            // Route event to appropriate AI agents
+            var aiRouter = new AIAgentRouter(aiAgents, log);
+            var aiResponses = await aiRouter.RouteEventAsync(result);
+            
+            log.LogInformation($"Triggered {aiResponses.Count} AI agents for {eventType} event");
+            
+            // Log AI agent responses
+            foreach (var aiResponse in aiResponses)
+            {
+                if (aiResponse.Success)
+                {
+                    log.LogInformation($"AI Agent {aiResponse.AgentName}: {aiResponse.Message} (took {aiResponse.ProcessingTimeMs}ms)");
+                }
+                else
+                {
+                    log.LogWarning($"AI Agent {aiResponse.AgentName} failed: {aiResponse.ErrorMessage}");
+                }
+            }
             
             return new { 
                 success = true, 
@@ -117,7 +140,16 @@ public static class GitHubWebhookFunction
                 eventType = result.EventType,
                 action = result.Action,
                 priority = result.Priority.ToString(),
-                metadata = result.Metadata
+                metadata = result.Metadata,
+                aiAgentsTriggered = aiResponses.Count,
+                aiResponses = aiResponses.Select(r => new {
+                    agentName = r.AgentName,
+                    success = r.Success,
+                    message = r.Message,
+                    actionTaken = r.ActionTaken,
+                    processingTimeMs = r.ProcessingTimeMs,
+                    errorMessage = r.ErrorMessage
+                }).ToList()
             };
         }
         else

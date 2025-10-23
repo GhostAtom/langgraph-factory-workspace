@@ -5,11 +5,13 @@ This project is an Azure Functions-based agent that listens to GitHub Kanban eve
 ## Features
 
 - **GitHub Webhook Integration**: Listens to GitHub webhook events for issues, pull requests, and project management
+- **AI Agent Integration**: Automatically triggers appropriate AI agents based on event types and content
 - **Kanban Event Processing**: Processes project cards, columns, and project events
 - **Event Prioritization**: Categorizes events by priority (High, Medium, Low)
+- **Intelligent Routing**: Routes events to specialized AI agents for analysis and insights
 - **Comprehensive Logging**: Detailed logging for monitoring and debugging
 - **Security**: Webhook signature verification for secure event processing
-- **Extensible Architecture**: Easy to extend with additional event processors
+- **Extensible Architecture**: Easy to extend with additional event processors and AI agents
 
 ## Supported Events
 
@@ -99,7 +101,27 @@ This project is an Azure Functions-based agent that listens to GitHub Kanban eve
 ## API Endpoints
 
 ### GitHub Webhook
-- **POST** `/api/github/webhook` - Receives GitHub webhook events
+- **POST** `/api/github/webhook` - Receives GitHub webhook events (basic processing)
+- **POST** `/api/github/webhook/enhanced` - Receives GitHub webhook events with AI agent integration
+
+## AI Agents
+
+The system includes three specialized AI agents that are automatically triggered based on event types:
+
+### IssueAnalysisAgent
+- **Triggers on**: Issue events (opened, labeled, assigned)
+- **Provides**: Priority analysis, category detection, assignee suggestions, effort estimation
+- **Example**: Analyzes a new bug report and suggests it's high priority, needs security team review
+
+### CodeReviewAgent  
+- **Triggers on**: Pull request events (opened, updated, review requested)
+- **Provides**: Risk assessment, reviewer suggestions, code quality analysis, security concerns
+- **Example**: Analyzes a security-related PR and recommends security expert review
+
+### ProjectManagementAgent
+- **Triggers on**: Project card, project, and column events
+- **Provides**: Workflow optimization, bottleneck detection, resource allocation analysis
+- **Example**: Detects when cards are moving slowly and suggests workflow improvements
 
 ## Configuration
 
@@ -110,6 +132,12 @@ This project is an Azure Functions-based agent that listens to GitHub Kanban eve
 | `GITHUB_WEBHOOK_SECRET` | Secret for webhook signature verification | Yes |
 | `AzureWebJobsStorage` | Azure Storage connection string | Yes |
 | `FUNCTIONS_WORKER_RUNTIME` | Function runtime (dotnet) | Yes |
+| `AI_PROVIDER` | AI provider (OpenAI, Azure OpenAI, etc.) | No |
+| `AI_API_KEY` | API key for AI services | No |
+| `AI_MODEL` | AI model to use (e.g., gpt-4) | No |
+| `ENABLE_ISSUE_ANALYSIS_AGENT` | Enable issue analysis AI agent | No |
+| `ENABLE_CODE_REVIEW_AGENT` | Enable code review AI agent | No |
+| `ENABLE_PROJECT_MANAGEMENT_AGENT` | Enable project management AI agent | No |
 
 ### Event Processing
 
