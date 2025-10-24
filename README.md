@@ -1,36 +1,50 @@
 # OAuth2 Authentication
 
 ## Overview
-This project implements OAuth2-based user authentication using Node.js and Express. Users can log in using Google, Facebook, or GitHub.
 
-## Setup
+This project implements OAuth2 authentication with Google, Facebook, and GitHub using Node.js and Express. Passport.js is used to manage authentication strategies.
 
-1. Clone the repository.
-2. Install dependencies:
+## Getting Started
+
+### Prerequisites
+- Node.js
+- npm
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
    ```
+2. Navigate to the project directory:
+   ```bash
+   cd oauth2-authentication
+   ```
+3. Install the dependencies:
+   ```bash
    npm install
    ```
-3. Create a `.env` file with your OAuth2 credentials:
+4. Create a `.env` file in the root directory and add your OAuth2 credentials:
    ```
    GOOGLE_CLIENT_ID=your_google_client_id
    GOOGLE_CLIENT_SECRET=your_google_client_secret
-   FACEBOOK_CLIENT_ID=your_facebook_client_id
-   FACEBOOK_CLIENT_SECRET=your_facebook_client_secret
+   FACEBOOK_APP_ID=your_facebook_app_id
+   FACEBOOK_APP_SECRET=your_facebook_app_secret
    GITHUB_CLIENT_ID=your_github_client_id
    GITHUB_CLIENT_SECRET=your_github_client_secret
-   PORT=3000
    ```
 
-## Running the Application
+5. Start the server:
+   ```bash
+   npm start
+   ```
 
-Start the server:
-```
-npm start
-```
+6. Visit `http://localhost:3000` in your browser.
 
 ## Testing
-
-To run the tests:
+Run tests using
 ```
 npm test
 ```
+
+## License
+This project is licensed under the MIT License.
