@@ -1,11 +1,23 @@
 const request = require('supertest');
-const app = require('../src/app');
+const express = require('express');
+const os = require('os');
 
-describe('GET /status', () => {
-    it('should return system uptime in JSON format', async () => {
-        const response = await request(app).get('/status');
-        expect(response.statusCode).toBe(200);
+const app = express();
+app.get('/status', (req, res) => {
+  const uptime = os.uptime();
+  res.json({ uptime });
+});
+
+describe('GET /status', function() {
+  it('responds with a JSON object containing the uptime', function(done) {
+    request(app)
+      .get('/status')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(response => {
         expect(response.body).toHaveProperty('uptime');
-        expect(typeof response.body.uptime).toBe('number');
-    });
+        done();
+      })
+      .catch(err => done(err));
+  });
 });

@@ -2,14 +2,13 @@ const express = require('express');
 const os = require('os');
 
 const app = express();
+const port = 3000;
 
 app.get('/status', (req, res) => {
-    const uptime = os.uptime(); // Get system uptime in seconds
-    res.json({ uptime });
+  const uptime = os.uptime();
+  res.json({ uptime });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Application running on http://localhost:${port}`);
 });
-module.exports = app;

@@ -1,44 +1,52 @@
 # Status Endpoint
 
-This project implements a simple Express.js application with a `/status` endpoint that returns the system's uptime.
+This application provides a `/status` endpoint that returns the system's uptime in seconds.
 
-## Installation
+## Getting Started
 
-To install the dependencies, run:
+### Prerequisites
 
-```bash
-npm install
+- Node.js
+- npm
+
+### Installing
+
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory:
+   ```
+   cd status-endpoint
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
+
+### Running the Application
+
+To start the server, run:
+``` 
+npm start 
 ```
 
-## Running the Application
+The application will be running on `http://localhost:3000`.
 
-To start the application, use:
+### Using the `/status` Endpoint
 
-```bash
-npm start
+Send a GET request to:
+```
+http://localhost:3000/status
+```
+The response will be a JSON object:
+```
+{ "uptime": <uptime_in_seconds> }
 ```
 
-The application will be running on `http://localhost:3000` by default.
+### Running Tests
 
-## Testing
-
-To run the tests, use:
-
-```bash
+To execute tests, run:
+```
 npm test
 ```
-
-## Endpoint
-
-- `/status`: Returns the system uptime in seconds as a JSON response. Example:
-
-  ```json
-  {
-    "uptime": 123456
-  }
-  ````
-
-## Notes
-
-- Make sure Node.js and npm are installed on your system.
-- Adjust the port by setting the `PORT` environment variable if needed.
