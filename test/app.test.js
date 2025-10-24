@@ -1,23 +1,21 @@
 const request = require('supertest');
 const express = require('express');
-const os = require('os');
 
 const app = express();
-app.get('/status', (req, res) => {
-  const uptime = os.uptime();
-  res.json({ uptime });
+
+app.get('/health', (req, res) => {
+  return res.status(200).json({ status: 'healthy' });
 });
 
-describe('GET /status', function() {
-  it('responds with a JSON object containing the uptime', function(done) {
-    request(app)
-      .get('/status')
+describe('GET /health', () => {
+  it('should return 200 OK and healthy status', async () => {
+    const res = await request(app)
+      .get('/health')
       .expect('Content-Type', /json/)
-      .expect(200)
-      .then(response => {
-        expect(response.body).toHaveProperty('uptime');
-        done();
-      })
-      .catch(err => done(err));
+      .expect(200);
+
+    expect(res.body).toEqual({ status: 'healthy' });
   });
+
+  // Additional tests for unhealthy scenarios or complex logic can be added here
 });

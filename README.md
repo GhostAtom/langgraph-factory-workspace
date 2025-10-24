@@ -1,9 +1,9 @@
 # Health Check Endpoint
 
 ## Overview
-This project provides a simple Express.js application with a health check endpoint to verify the application's status.
+This application includes a health check endpoint (`/health`) to verify the application's status. It returns a JSON object indicating whether the application is up and running.
 
-## Running the Application
+## How to Run
 
 1. Install dependencies:
    ```bash
@@ -15,19 +15,11 @@ This project provides a simple Express.js application with a health check endpoi
    npm start
    ```
 
-3. Access the health check endpoint at `http://localhost:3000/health`.
+3. Access the health endpoint at `http://localhost:3000/health`
 
 ## Testing
 
-Run the test suite using Mocha:
-
+Run tests using:
 ```bash
 npm test
 ```
-
-## API Documentation
-
-- **GET /health**
-  - **Response 200**: Application is healthy.
-  - **Response 500**: Application is unhealthy.
-  - Description: Returns the health status of the application.
