@@ -1,21 +1,21 @@
 # Health Check Endpoint
 
 ## Overview
-This application includes a health check endpoint at `/health` that returns the health status of the application and its dependencies.
+The health check endpoint provides a simple way to verify that the application is running and responsive, primarily for use by monitoring tools.
 
-## Usage
-- `GET /health`
-  - Returns 200 OK if the application and its services are healthy.
-  - Returns 500 Internal Server Error if any major component is failing.
+## Endpoint
+- **Route**: `/health`
+- **Method**: `GET`
 
-## How It Works
-- The health endpoint checks the following services:
-  - **Database connection**
-  - **Service A**
+## Responses
+- **200 OK**: Application is healthy
+  - `{ "status": "OK", "message": "Application is healthy" }`
+- **500 Internal Server Error**: Application is unhealthy
+  - `{ "status": "ERROR", "message": "Application is unhealthy", "error": "Description of error" }`
 
 ## Testing
-To test the health check endpoint, you can run the tests located in the `test/` directory. Use the command:
+To run the tests, use the following command:
 
-```
+```bash
 npm test
 ```

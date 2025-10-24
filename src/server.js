@@ -1,23 +1,20 @@
-
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Function to format uptime in a human-readable way
-function formatUptime(seconds) {
-  const days = Math.floor(seconds / (3600 * 24));
-  const hours = Math.floor((seconds % (3600 * 24)) / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  return `${days} days, ${hours} hours, ${minutes} minutes`;
-}
-
-// /status endpoint
-app.get('/status', (req, res) => {
-  const uptime = process.uptime();
-  const humanReadableUptime = formatUptime(uptime);
-  res.json({ uptime: humanReadableUptime });
+// Health check endpoint
+app.get('/health', async (req, res) => {
+  try {
+    // Basic health check logic
+    // Add any additional checks here (e.g., database connectivity)
+    res.status(200).send({ status: 'OK', message: 'Application is healthy' });
+  } catch (error) {
+    res.status(500).send({ status: 'ERROR', message: 'Application is unhealthy', error: error.message });
+  }
 });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = app;
