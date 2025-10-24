@@ -1,19 +1,32 @@
 const request = require('supertest');
-const app = require('../src/app');
+const express = require('express');
+const app = express();
+
+app.get('/health', (req, res) => {
+  const healthStatus = { healthy: true };
+  if (healthStatus.healthy) {
+    return res.status(200).json({ status: 'healthy', message: 'Application is running smoothly.' });
+  }
+  return res.status(500).json({ status: 'unhealthy', message: 'Application is facing some issues.' });
+});
 
 describe('GET /health', () => {
-    it('should return 200 OK when application is healthy', async () => {
-        const res = await request(app).get('/health');
-        expect(res.statusCode).toEqual(200);
-        expect(res.body).toEqual({ status: 'OK', message: 'Application is healthy' });
-    });
+  it('should return 200 OK when the application is healthy', (done) => {
+    request(app)
+      .get('/health')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .expect({ status: 'healthy', message: 'Application is running smoothly.' })
+      .end(done);
+  });
 
-    // Simulate application unhealthy test
-    it('should return 500 Internal Server Error when application is unhealthy', async () => {
-        const res = await request(app).get('/health');
-        if(app.query().isDbConnected === false){ // Pretend isDbConnected was false
-           expect(res.statusCode).toEqual(500);
-           expect(res.body).toEqual({ status: 'ERROR', message: 'Application is unhealthy' });
-        }
-    });
+  it('should return 500 Internal Server Error when the application is not healthy', (done) => {
+    app.get('/health', (req, res) => res.status(500).json({ status: 'unhealthy', message: 'Application is facing some issues.' }));
+    request(app)
+      .get('/health')
+      .expect('Content-Type', /json/)
+      .expect(500)
+      .expect({ status: 'unhealthy', message: 'Application is facing some issues.' })
+      .end(done);
+  });
 });

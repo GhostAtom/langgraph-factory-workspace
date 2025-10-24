@@ -1,15 +1,33 @@
 # Health Check Endpoint
 
 ## Overview
-This project implements a health check endpoint for the application. The endpoint is available at `GET /health` and provides a way to verify that the application is running and responsive.
+This project provides a simple Express.js application with a health check endpoint to verify the application's status.
 
-## Setup
-1. Clone the repository
-2. Run `npm install` to install dependencies
-3. Start the application using `npm start`
+## Running the Application
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the server:
+   ```bash
+   npm start
+   ```
+
+3. Access the health check endpoint at `http://localhost:3000/health`.
 
 ## Testing
-Run tests using `npm test`. This will check the health check endpoint functionality.
 
-## Monitoring
-Integrate with monitoring tools like Prometheus or Grafana by checking the `/health` endpoint to verify application health.
+Run the test suite using Mocha:
+
+```bash
+npm test
+```
+
+## API Documentation
+
+- **GET /health**
+  - **Response 200**: Application is healthy.
+  - **Response 500**: Application is unhealthy.
+  - Description: Returns the health status of the application.
