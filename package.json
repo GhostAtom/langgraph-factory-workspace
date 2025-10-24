@@ -1,18 +1,13 @@
 {
-  "name": "health-check-app",
+  "name": "branch-naming-check",
   "version": "1.0.0",
-  "description": "Application with health check endpoint",
-  "main": "src/server.js",
+  "description": "A project to enforce branch naming conventions",
+  "main": "scripts/validateBranchName.js",
   "scripts": {
-    "start": "node src/server.js",
     "test": "jest"
   },
-  "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^5.9.7"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "jest": "^26.6.0",
-    "supertest": "^6.0.1"
+    "jest": "^26.6.3"
   }
 }

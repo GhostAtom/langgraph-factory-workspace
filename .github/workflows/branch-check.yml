@@ -1,0 +1,19 @@
+name: Branch Naming Convention Check
+
+on:
+  create:
+    branches:
+      - '*'
+  push:
+    branches:
+      - '*'
+
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Validate branch name
+        run: node scripts/validateBranchName.js
