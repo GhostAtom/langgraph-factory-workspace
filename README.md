@@ -1,50 +1,55 @@
-# OAuth2 Authentication
+# Login Button Bug Fix
 
 ## Overview
 
-This project implements OAuth2 authentication with Google, Facebook, and GitHub using Node.js and Express. Passport.js is used to manage authentication strategies.
+This project resolves a critical bug where users are unable to log in when clicking the login button. This document provides an overview of the implementation and how to run the project locally.
 
-## Getting Started
+## Prerequisites
 
-### Prerequisites
 - Node.js
 - npm
 
-### Installation
+## Getting Started
+
 1. Clone the repository:
-   ```bash
-   git clone <repository-url>
    ```
-2. Navigate to the project directory:
-   ```bash
-   cd oauth2-authentication
+   git clone [repository_url]
+   cd project_directory
    ```
-3. Install the dependencies:
-   ```bash
+
+2. Install dependencies:
+   ```
    npm install
    ```
-4. Create a `.env` file in the root directory and add your OAuth2 credentials:
+
+3. Start the server:
    ```
-   GOOGLE_CLIENT_ID=your_google_client_id
-   GOOGLE_CLIENT_SECRET=your_google_client_secret
-   FACEBOOK_APP_ID=your_facebook_app_id
-   FACEBOOK_APP_SECRET=your_facebook_app_secret
-   GITHUB_CLIENT_ID=your_github_client_id
-   GITHUB_CLIENT_SECRET=your_github_client_secret
+   node server.js
    ```
 
-5. Start the server:
-   ```bash
-   npm start
-   ```
+4. Open your browser and go to `http://localhost:3000` to see the login page.
 
-6. Visit `http://localhost:3000` in your browser.
+## Running Tests
 
-## Testing
-Run tests using
-```
+To execute tests, run:
+```bash
 npm test
 ```
 
-## License
-This project is licensed under the MIT License.
+## Project Structure
+
+- `src/` - Contains the HTML, CSS, and JavaScript files.
+- `server.js` - The Express server handling login POST requests.
+- `test/` - Contains test cases for the login functionality.
+
+## Test Cases
+
+- **Test Case 1:** Click the login button with valid credentials.
+- **Test Case 2:** Click the login button with invalid credentials.
+- **Test Case 3:** Click the login button with no credentials.
+
+## Acceptance Criteria
+
+- Login button successfully logs in users with valid credentials.
+- Appropriate error messages are shown for invalid or missing credentials.
+- The fix does not introduce new bugs or regressions.
