@@ -1,17 +1,17 @@
 {
   "name": "status-endpoint",
   "version": "1.0.0",
-  "description": "An application with a /status endpoint to return system uptime",
-  "main": "src/app.js",
+  "description": "An Express app with a /status endpoint that returns system uptime.",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node src/index.js",
     "test": "jest"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.17.1"
   },
   "devDependencies": {
-    "jest": "^29.3.1",
-    "supertest": "^6.3.1"
+    "jest": "^27.0.0",
+    "supertest": "^6.1.3"
   }
 }
