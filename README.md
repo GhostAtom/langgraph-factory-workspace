@@ -1,21 +1,15 @@
 # Health Check Endpoint
 
 ## Overview
-The health check endpoint provides a simple way to verify that the application is running and responsive, primarily for use by monitoring tools.
+This project implements a health check endpoint for the application. The endpoint is available at `GET /health` and provides a way to verify that the application is running and responsive.
 
-## Endpoint
-- **Route**: `/health`
-- **Method**: `GET`
-
-## Responses
-- **200 OK**: Application is healthy
-  - `{ "status": "OK", "message": "Application is healthy" }`
-- **500 Internal Server Error**: Application is unhealthy
-  - `{ "status": "ERROR", "message": "Application is unhealthy", "error": "Description of error" }`
+## Setup
+1. Clone the repository
+2. Run `npm install` to install dependencies
+3. Start the application using `npm start`
 
 ## Testing
-To run the tests, use the following command:
+Run tests using `npm test`. This will check the health check endpoint functionality.
 
-```bash
-npm test
-```
+## Monitoring
+Integrate with monitoring tools like Prometheus or Grafana by checking the `/health` endpoint to verify application health.

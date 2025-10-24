@@ -1,15 +1,17 @@
-
 const express = require('express');
-const os = require('os');
-
 const app = express();
 
-app.get('/status', (req, res) => {
-  const uptime = os.uptime();
-  res.json({ uptime });
+// Health check endpoint
+app.get('/health', (req, res) => {
+    // Example health check logic
+    const isDbConnected = true;  // Simulate a database connection check
+    const isServiceAvailable = true;  // Simulate a service availability check
+
+    if (isDbConnected && isServiceAvailable) {
+        res.status(200).json({ status: 'OK', message: 'Application is healthy' });
+    } else {
+        res.status(500).json({ status: 'ERROR', message: 'Application is unhealthy' });
+    }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports = app;
