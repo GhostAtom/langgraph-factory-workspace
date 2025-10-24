@@ -1,23 +1,21 @@
-# Status Endpoint Documentation
+# Health Check Endpoint
 
 ## Overview
+This application includes a health check endpoint at `/health` that returns the health status of the application and its dependencies.
 
-This express application includes a `/status` endpoint that provides the system's uptime in a human-readable format. The uptime tells you how long the application has been running.
+## Usage
+- `GET /health`
+  - Returns 200 OK if the application and its services are healthy.
+  - Returns 500 Internal Server Error if any major component is failing.
 
-## How to Run
-
-1. Ensure Node.js and npm are installed.
-2. Clone the repository.
-3. Install dependencies using `npm install`.
-4. Start the application using `node src/server.js`.
-
-## Endpoint
-
-- **GET /status**
-  - **Response**
-    - 200 OK
-    - Content: `{ "uptime": "<days> days, <hours> hours, <minutes> minutes" }`
+## How It Works
+- The health endpoint checks the following services:
+  - **Database connection**
+  - **Service A**
 
 ## Testing
+To test the health check endpoint, you can run the tests located in the `test/` directory. Use the command:
 
-To run tests, use the command: `npm test`.
+```
+npm test
+```
