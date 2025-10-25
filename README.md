@@ -1,39 +1,35 @@
-# OAuth2 Authentication
+# User Status API
 
 ## Overview
+This project implements a new API endpoint that allows clients to retrieve the status of a user. The status indicates whether a user is active, inactive, or suspended.
 
-This project adds OAuth2 authentication to an application, allowing users to log in via Google, Facebook, or GitHub.
+## Endpoint
+`GET /api/users/:id/status`
 
-## Setup
-
-1. Ensure Node.js and npm are installed.
-2. Clone the repo and run `npm install` to install dependencies.
-3. Set up your environment variables in a `.env` file as specified in `.env.example`.
-
-## Running the Application
-
-- Start the server with `npm start`.
-- Access the application at `http://localhost:3000`.
+- **Response**
+  - `200 OK`: Returns the user status
+    ```json
+    { "status": "active" }
+    ```
+  - `404 Not Found`: User not found
 
 ## Testing
+To run tests, execute:
 
-- Run tests with `npm test`.
+```bash
+npm test
+```
 
-## Authentication Providers
+## Setup
+1. Install dependencies:
+```
+npm install
+```
+2. Run the server:
+```
+npm start
+```
 
-- **Google**: /auth/google
-- **Facebook**: /auth/facebook
-- **GitHub**: /auth/github
-
-## Security
-
-- Sessions are managed using express-session.
-- Ensure your session secret is updated and secure.
-
-## Deployment
-
-- Update your CI/CD pipeline to handle environment variables securely.
-
-## Monitoring
-
-- Use monitoring tools to track authentication success rates and potential security issues.
+## Development Notes
+- Ensure MongoDB is running locally.
+- Security, performance, and documentation considerations should be addressed as per the project plan.
