@@ -1,39 +1,37 @@
-# OAuth2 Authentication
+# Health Endpoint
 
-## Overview
+This application includes a `/health` endpoint that provides a simple way to verify the application's status.
 
-This project adds OAuth2 authentication to an application, allowing users to log in via Google, Facebook, or GitHub.
+## Getting Started
 
-## Setup
+1. **Installation**
 
-1. Ensure Node.js and npm are installed.
-2. Clone the repo and run `npm install` to install dependencies.
-3. Set up your environment variables in a `.env` file as specified in `.env.example`.
+   ```
+   npm install
+   ```
 
-## Running the Application
+2. **Running the Application**
 
-- Start the server with `npm start`.
-- Access the application at `http://localhost:3000`.
+   ```
+   npm start
+   ```
+
+   This will start the application on `http://localhost:3000`.
+
+3. **Accessing the Health Endpoint**
+
+   Visit `http://localhost:3000/health` to receive a JSON response:
+
+   ```json
+   { "status": "healthy" }
+   ```
 
 ## Testing
 
-- Run tests with `npm test`.
+Run the following command to execute tests:
 
-## Authentication Providers
+```bash
+npm test
+```
 
-- **Google**: /auth/google
-- **Facebook**: /auth/facebook
-- **GitHub**: /auth/github
-
-## Security
-
-- Sessions are managed using express-session.
-- Ensure your session secret is updated and secure.
-
-## Deployment
-
-- Update your CI/CD pipeline to handle environment variables securely.
-
-## Monitoring
-
-- Use monitoring tools to track authentication success rates and potential security issues.
+This will ensure the `/health` endpoint is functioning correctly.

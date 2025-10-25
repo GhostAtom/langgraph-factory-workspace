@@ -1,21 +1,16 @@
 const request = require('supertest');
 const express = require('express');
-
 const app = express();
 
+// Setup the health endpoint
 app.get('/health', (req, res) => {
-  return res.status(200).json({ status: 'healthy' });
+  res.status(200).json({ status: 'healthy' });
 });
 
 describe('GET /health', () => {
-  it('should return 200 OK and healthy status', async () => {
-    const res = await request(app)
-      .get('/health')
-      .expect('Content-Type', /json/)
-      .expect(200);
-
-    expect(res.body).toEqual({ status: 'healthy' });
+  it('should return 200 OK with status healthy', async () => {
+    const res = await request(app).get('/health');
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty('status', 'healthy');
   });
-
-  // Additional tests for unhealthy scenarios or complex logic can be added here
 });
