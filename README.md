@@ -1,39 +1,55 @@
-# OAuth2 Authentication
+# Test Endpoint Application
 
-## Overview
+This is a simple Express.js application that includes a test endpoint to verify basic functionality and connectivity.
 
-This project adds OAuth2 authentication to an application, allowing users to log in via Google, Facebook, or GitHub.
+## Getting Started
 
-## Setup
+### Prerequisites
 
-1. Ensure Node.js and npm are installed.
-2. Clone the repo and run `npm install` to install dependencies.
-3. Set up your environment variables in a `.env` file as specified in `.env.example`.
+- Node.js
+- npm
 
-## Running the Application
+### Installation
 
-- Start the server with `npm start`.
-- Access the application at `http://localhost:3000`.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
 
-## Testing
+2. Navigate to the project directory:
+   ```bash
+   cd test-endpoint-app
+   ```
 
-- Run tests with `npm test`.
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Authentication Providers
+### Running the Application
 
-- **Google**: /auth/google
-- **Facebook**: /auth/facebook
-- **GitHub**: /auth/github
+To start the application, use the following command:
 
-## Security
+```bash
+npm start
+```
 
-- Sessions are managed using express-session.
-- Ensure your session secret is updated and secure.
+This will start the server on the default port 3000.
 
-## Deployment
+### Testing
 
-- Update your CI/CD pipeline to handle environment variables securely.
+To run the tests, use the following command:
 
-## Monitoring
+```bash
+npm test
+```
 
-- Use monitoring tools to track authentication success rates and potential security issues.
+## API Endpoint
+
+- **GET /api/test**
+  - Returns: `{ "message": "Application is running" }`
+  - Status: 200 OK
+
+## License
+
+This project is licensed under the MIT License.

@@ -1,35 +1,17 @@
-document.getElementById('loginButton').addEventListener('click', function() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const errorMessage = document.getElementById('error-message');
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
 
-    if (!username || !password) {
-        errorMessage.textContent = 'Please enter both username and password.';
-        return;
-    }
-
-    const loginData = {
-        username: username,
-        password: password
-    };
-
-    fetch('/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = '/dashboard';
-        } else {
-            errorMessage.textContent = data.message;
-        }
-    })
-    .catch(error => {
-        console.error('Error during login:', error);
-        errorMessage.textContent = 'Login failed. Please try again later.';
-    });
+app.get('/api/test', (req, res) => {
+  res.status(200).json({ message: 'Application is running' });
 });
+
+app.use((req, res, next) => {
+  res.status(404).send('Not Found');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+module.exports = app;

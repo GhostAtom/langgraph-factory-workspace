@@ -1,21 +1,24 @@
 const request = require('supertest');
-const express = require('express');
+const app = require('../src/app');
 
-const app = express();
-
-app.get('/health', (req, res) => {
-  return res.status(200).json({ status: 'healthy' });
-});
-
-describe('GET /health', () => {
-  it('should return 200 OK and healthy status', async () => {
-    const res = await request(app)
-      .get('/health')
+describe('Test Endpoint', () => {
+  it('GET /api/test should return application running message', (done) => {
+    request(app)
+      .get('/api/test')
       .expect('Content-Type', /json/)
-      .expect(200);
-
-    expect(res.body).toEqual({ status: 'healthy' });
+      .expect(200)
+      .expect({ message: 'Application is running' }, done);
   });
 
-  // Additional tests for unhealthy scenarios or complex logic can be added here
+  it('POST /api/test should return method not allowed', (done) => {
+    request(app)
+      .post('/api/test')
+      .expect(404, done);
+  });
+
+  it('GET /invalid should return 404', (done) => {
+    request(app)
+      .get('/invalid')
+      .expect(404, done);
+  });
 });
