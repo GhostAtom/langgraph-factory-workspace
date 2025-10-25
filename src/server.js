@@ -1,20 +1,26 @@
+require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
+const authRoutes = require('./authRoutes');
+
 const app = express();
-const port = 3000;
 
-app.use(express.json());
-app.use(express.static('src'));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+}));
 
-app.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
+app.use(passport.initialize());
+app.use(passport.session());
 
-    if (username === 'user' && password === 'pass') {
-        res.json({ success: true, message: 'Login successful' });
-    } else {
-        res.json({ success: false, message: 'Invalid username or password' });
-    }
+app.use('/auth', authRoutes);
+
+app.get('/', (req, res) => {
+  res.send('<h1>Home Page</h1>');
 });
 
-app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
 });

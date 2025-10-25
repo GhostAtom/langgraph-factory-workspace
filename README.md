@@ -1,19 +1,39 @@
-# Login Application
+# OAuth2 Authentication
 
 ## Overview
 
-This application provides a simple login interface. The client-side code is written in JavaScript, HTML, and CSS, and the server-side is implemented in Node.js.
+This project adds OAuth2 authentication to an application, allowing users to log in via Google, Facebook, or GitHub.
 
-## Getting Started
+## Setup
 
-1. **Install dependencies**: Run `npm install` to install necessary Node.js packages.
-2. **Run the application**: Use `node src/server.js` to start the server.
-3. **Access the application**: Open your browser and go to `http://localhost:3000`.
+1. Ensure Node.js and npm are installed.
+2. Clone the repo and run `npm install` to install dependencies.
+3. Set up your environment variables in a `.env` file as specified in `.env.example`.
+
+## Running the Application
+
+- Start the server with `npm start`.
+- Access the application at `http://localhost:3000`.
 
 ## Testing
 
-Tests are written using Jest and Supertest. Run tests using the command `npm test`.
+- Run tests with `npm test`.
 
-## Potential Improvements
-- Add a database for storing user credentials.
-- Implement sessions or JWT for user authentication.
+## Authentication Providers
+
+- **Google**: /auth/google
+- **Facebook**: /auth/facebook
+- **GitHub**: /auth/github
+
+## Security
+
+- Sessions are managed using express-session.
+- Ensure your session secret is updated and secure.
+
+## Deployment
+
+- Update your CI/CD pipeline to handle environment variables securely.
+
+## Monitoring
+
+- Use monitoring tools to track authentication success rates and potential security issues.
