@@ -1,14 +1,12 @@
-require('dotenv').config();
 const express = require('express');
-const session = require('express-session');
 const passport = require('passport');
-const authRoutes = require('./routes/auth');
+const session = require('express-session');
+require('./passport-setup');
 
 const app = express();
 
-app.use(morgan('dev'));
 app.use(session({
-  secret: 'your_secret_key',
+  secret: 'your-secret-key',
   resave: false,
   saveUninitialized: true
 }));
@@ -16,13 +14,25 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/auth', authRoutes);
-
 app.get('/', (req, res) => {
-  res.send('Welcome to OAuth2 Authentication Example');
+  res.send('<a href="/auth/google">Authenticate with Google</a>');
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
+}));
+
+app.get('/auth/google/callback', passport.authenticate('google', {
+  failureRedirect: '/'
+}), (req, res) => {
+  res.redirect('/dashboard');
 });
+
+app.get('/dashboard', (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  res.send(`Hello ${req.user.displayName}!`);
+});
+
+app.listen(3000, () => console.log('Server is running on http://localhost:3000'));
