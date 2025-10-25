@@ -1,23 +1,19 @@
-# OAuth2 Authentication Implementation
+# Login Application
 
 ## Overview
 
-This project implements OAuth2 authentication using Passport.js, allowing users to log in via Google.
+This application provides a simple login interface. The client-side code is written in JavaScript, HTML, and CSS, and the server-side is implemented in Node.js.
 
-## Setup Instructions
+## Getting Started
 
-1. Clone the repository.
-2. Run `npm install` to install dependencies.
-3. Set environment variables in a `.env` file:
-   - `GOOGLE_CLIENT_ID`: Your Google OAuth Client ID
-   - `GOOGLE_CLIENT_SECRET`: Your Google OAuth Client Secret
-4. Start the application with `npm start`.
-
-## Authentication Flow
-
-- Visit `http://localhost:3000/` and click on the "Authenticate with Google" link.
-- After successful authentication, you will be redirected to the Dashboard.
+1. **Install dependencies**: Run `npm install` to install necessary Node.js packages.
+2. **Run the application**: Use `node src/server.js` to start the server.
+3. **Access the application**: Open your browser and go to `http://localhost:3000`.
 
 ## Testing
 
-- Placeholder for tests using Mocha or Jest (not implemented).
+Tests are written using Jest and Supertest. Run tests using the command `npm test`.
+
+## Potential Improvements
+- Add a database for storing user credentials.
+- Implement sessions or JWT for user authentication.
