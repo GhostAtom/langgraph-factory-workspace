@@ -1,22 +1,21 @@
 {
-  "name": "auth-system",
+  "name": "payment-processing-system",
   "version": "1.0.0",
-  "description": "User Authentication System",
-  "main": "src/server.js",
+  "description": "A system for processing payments with logging and fraud detection",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node src/index.js",
     "test": "jest"
   },
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.8",
-    "nodemailer": "^6.6.3"
+    "mongoose": "^5.11.15",
+    "stripe": "^8.174.0",
+    "paypal-rest-sdk": "^1.8.1"
   },
   "devDependencies": {
-    "jest": "^27.0.6",
-    "supertest": "^6.1.6"
+    "jest": "^26.6.3",
+    "eslint": "^7.21.0",
+    "prettier": "^2.2.1"
   }
 }
