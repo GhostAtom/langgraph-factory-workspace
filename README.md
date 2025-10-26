@@ -1,45 +1,29 @@
-# Test Endpoint Application
+# Configuration API
 
 ## Overview
-This application is a basic Express.js server with a single test endpoint at `/api/test` that returns a message indicating the application is running.
+This project adds a secure API endpoint to retrieve configuration settings. It returns a JSON response with necessary configuration data.
 
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Change into the project directory:
-   ```bash
-   cd test-endpoint-app
-   ```
-3. Install dependencies:
+## Setup and Installation
+1. Clone the repository
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-## Running the Application
-
-To start the application, run:
-```bash
-npm start
-```
-The server will be running at `http://localhost:3000`.
+3. Set environment variables:
+   - `JWT_SECRET`
+   - `MONGO_URI`
+4. Run the server:
+   ```bash
+   npm start
+   ```
 
 ## Testing
-
-To run the test suite, use:
+To run tests, use
 ```bash
 npm test
 ```
 
 ## API Endpoint
-### GET /api/test
-Returns a JSON message:
-- **Response:**
-  - `200 OK`
-  - `{ message: "Application is running" }`
-
-### Errors
-- **405 Method Not Allowed**: If you try to access the endpoint with a method other than GET.
-- **404 Not Found**: If you access a route that doesn't exist.
+- GET `/api/config`
+  - Retrieves configuration settings
+  - Requires JWT authentication in the `Authorization` header
