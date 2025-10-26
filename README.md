@@ -1,41 +1,33 @@
-# User Authentication System
+# Simple Test Endpoint
 
-This project implements a basic user authentication system using Node.js, Express, and MongoDB. It includes functionalities for user registration, login, logout, password reset, and session management.
+This is a basic Node.js application with a simple test endpoint to verify the application's functionality.
 
-## Setup Instructions
+## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd auth-system
-   ```
+To install the necessary dependencies, run:
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```
+npm install
+```
 
-3. Create a `.env` file based on the `.env.example` and fill in your credentials.
+## Running the Application
 
-4. Run the server:
-   ```bash
-   npm start
-   ```
+To start the server, run:
 
-5. Run tests:
-   ```bash
-   npm test
-   ```
+```
+npm start
+```
 
-## API Endpoints
+The application will be running on `http://localhost:3000`.
 
-- `POST /auth/login`: Logs in a user
-- `POST /auth/logout`: Logs out a user
-- `POST /auth/reset-password`: Sends a password reset email
-- `POST /auth/update-password`: Updates a user's password
+## Testing
 
-## Security Considerations
+To run tests, use:
 
-- Passwords are hashed using `bcrypt` before saving to the database.
-- JWT is used for secure session management.
-- Sensitive data such as database URI and email credentials are stored in environment variables.
+```
+npm test
+```
+
+## Endpoint
+
+- **GET** `/api/test`: Returns a message "Application is running"

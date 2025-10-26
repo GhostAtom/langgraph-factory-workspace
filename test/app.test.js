@@ -3,19 +3,19 @@ const express = require('express');
 
 const app = express();
 
-app.get('/health', (req, res) => {
-  return res.status(200).json({ status: 'healthy' });
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Application is running' });
 });
 
-describe('GET /health', () => {
-  it('should return 200 OK and healthy status', async () => {
-    const res = await request(app)
-      .get('/health')
-      .expect('Content-Type', /json/)
-      .expect(200);
-
-    expect(res.body).toEqual({ status: 'healthy' });
+describe('GET /api/test', () => {
+  it('should return the correct message', async () => {
+    const res = await request(app).get('/api/test');
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty('message', 'Application is running');
   });
 
-  // Additional tests for unhealthy scenarios or complex logic can be added here
+  it('should return method not allowed for POST method', async () => {
+    const res = await request(app).post('/api/test');
+    expect(res.statusCode).toEqual(404);
+  });
 });
