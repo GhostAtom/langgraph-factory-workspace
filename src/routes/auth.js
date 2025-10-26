@@ -1,38 +1,31 @@
 const express = require('express');
-const passport = require('passport');
-require('../strategies/google');
-require('../strategies/facebook');
-require('../strategies/github');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 const router = express.Router();
 
-// Google Auth Routes
-router.get('/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}));
+// POST /api/auth/login
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ msg: 'Invalid credentials' });
 
-router.get('/google/callback', passport.authenticate('google', {
-  failureRedirect: '/login'
-}), (req, res) => {
-  res.redirect('/');
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
+
+    const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '1h' });
+    res.json({ token });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
 });
 
-// Facebook Auth Routes
-router.get('/facebook', passport.authenticate('facebook'));
-
-router.get('/facebook/callback', passport.authenticate('facebook', {
-  failureRedirect: '/login'
-}), (req, res) => {
-  res.redirect('/');
-});
-
-// GitHub Auth Routes
-router.get('/github', passport.authenticate('github'));
-
-router.get('/github/callback', passport.authenticate('github', {
-  failureRedirect: '/login'
-}), (req, res) => {
-  res.redirect('/');
+// POST /api/auth/logout
+router.post('/logout', (req, res) => {
+  // Invalidate token logic (on client-side)
+  res.json({ msg: 'Logout successful' });
 });
 
 module.exports = router;

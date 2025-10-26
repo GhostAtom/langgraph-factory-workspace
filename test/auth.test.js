@@ -1,28 +1,22 @@
 const request = require('supertest');
-const express = require('express');
-const session = require('express-session');
-const passport = require('passport');
+const app = require('../src/index'); // Assuming app is exported from index.js
 
-const app = express();
-app.use(session({ secret: 'test', resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+describe('Authentication System', () => {
+  it('should login with valid credentials', async () => {
+    const res = await request(app)
+      .post('/api/auth/login')
+      .send({ email: 'test@example.com', password: 'password123' });
 
-// Mock Google authentication
-app.get('/auth/google', (req, res) => res.send('Google auth here'));
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty('token');
+  });
 
-app.get('/dashboard', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
-  }
-  res.send(`Hello User!`);
-});
+  it('should fail login with invalid credentials', async () => {
+    const res = await request(app)
+      .post('/api/auth/login')
+      .send({ email: 'wrong@example.com', password: 'wrongpassword' });
 
-describe('GET /auth/google', () => {
-  it('should initiate google authentication', (done) => {
-    request(app)
-      .get('/auth/google')
-      .expect(200)
-      .expect('Google auth here', done);
+    expect(res.statusCode).toEqual(400);
+    expect(res.body).toEqual({ msg: 'Invalid credentials' });
   });
 });
