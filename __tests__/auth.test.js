@@ -1,38 +1,53 @@
 const request = require('supertest');
-const express = require('express');
-const passport = require('passport');
-const authRoutes = require('../src/routes/auth');
+const mongoose = require('mongoose');
+const app = require('../src/server');
 
-const app = express();
-app.use(passport.initialize());
-app.use('/auth', authRoutes);
+beforeAll(async () => {
+  await mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+});
 
-// Mock strategies
-passport.use(new (require('passport-strategy'))());
+afterAll(async () => {
+  await mongoose.disconnect();
+});
 
-
-describe('OAuth2 Authentication Routes', () => {
-  it('should redirect to Google authentication page', (done) => {
-    request(app)
-      .get('/auth/google')
-      .expect(302)
-      .expect('Location', new RegExp('accounts\.google\.com'))
-      .end(done);
+describe('Authentication', () => {
+  it('should register a new user', async () => {
+    const res = await request(app).post('/auth/register').send({
+      email: 'test@example.com',
+      password: 'password123'
+    });
+    expect(res.statusCode).toEqual(201);
+    expect(res.body).toHaveProperty('token');
   });
 
-  it('should redirect to Facebook authentication page', (done) => {
-    request(app)
-      .get('/auth/facebook')
-      .expect(302)
-      .expect('Location', new RegExp('www\.facebook\.com'))
-      .end(done);
+  it('should login an existing user', async () => {
+    const res = await request(app)
+      .post('/auth/login')
+      .send({
+        email: 'test@example.com',
+        password: 'password123'
+      });
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty('token');
   });
 
-  it('should redirect to GitHub authentication page', (done) => {
-    request(app)
-      .get('/auth/github')
-      .expect(302)
-      .expect('Location', new RegExp('github\.com'))
-      .end(done);
+  it('should not login non-existing user', async () => {
+    const res = await request(app)
+      .post('/auth/login')
+      .send({
+        email: 'nonexisting@example.com',
+        password: 'wrongpassword'
+      });
+    expect(res.statusCode).toEqual(401);
+  });
+
+  it('should send a password reset email', async () => {
+    const res = await request(app)
+      .post('/auth/reset-password')
+      .send({
+        email: 'test@example.com'
+      });
+    expect(res.statusCode).toEqual(200);
+    expect(res.text).toBe('Password reset link sent');
   });
 });

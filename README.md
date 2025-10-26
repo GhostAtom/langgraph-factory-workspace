@@ -1,39 +1,41 @@
-# OAuth2 Authentication
+# User Authentication System
 
-## Overview
+This project implements a basic user authentication system using Node.js, Express, and MongoDB. It includes functionalities for user registration, login, logout, password reset, and session management.
 
-This project adds OAuth2 authentication to an application, allowing users to log in via Google, Facebook, or GitHub.
+## Setup Instructions
 
-## Setup
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd auth-system
+   ```
 
-1. Ensure Node.js and npm are installed.
-2. Clone the repo and run `npm install` to install dependencies.
-3. Set up your environment variables in a `.env` file as specified in `.env.example`.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Running the Application
+3. Create a `.env` file based on the `.env.example` and fill in your credentials.
 
-- Start the server with `npm start`.
-- Access the application at `http://localhost:3000`.
+4. Run the server:
+   ```bash
+   npm start
+   ```
 
-## Testing
+5. Run tests:
+   ```bash
+   npm test
+   ```
 
-- Run tests with `npm test`.
+## API Endpoints
 
-## Authentication Providers
+- `POST /auth/login`: Logs in a user
+- `POST /auth/logout`: Logs out a user
+- `POST /auth/reset-password`: Sends a password reset email
+- `POST /auth/update-password`: Updates a user's password
 
-- **Google**: /auth/google
-- **Facebook**: /auth/facebook
-- **GitHub**: /auth/github
+## Security Considerations
 
-## Security
-
-- Sessions are managed using express-session.
-- Ensure your session secret is updated and secure.
-
-## Deployment
-
-- Update your CI/CD pipeline to handle environment variables securely.
-
-## Monitoring
-
-- Use monitoring tools to track authentication success rates and potential security issues.
+- Passwords are hashed using `bcrypt` before saving to the database.
+- JWT is used for secure session management.
+- Sensitive data such as database URI and email credentials are stored in environment variables.
