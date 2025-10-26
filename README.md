@@ -1,45 +1,30 @@
-# Test Endpoint Application
+# FDP File Creator
 
 ## Overview
-This application is a basic Express.js server with a single test endpoint at `/api/test` that returns a message indicating the application is running.
 
-## Installation
+This project provides a functionality to create a file named "fdp" in a specified directory using Node.js and React for the UI.
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Change into the project directory:
-   ```bash
-   cd test-endpoint-app
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
+## Setup & Installation
+
+- Ensure you have Node.js installed.
+- Clone this repository.
+- Run `npm install` to install all the necessary dependencies.
 
 ## Running the Application
 
-To start the application, run:
-```bash
-npm start
-```
-The server will be running at `http://localhost:3000`.
+- Start the development server with `npm start`.
+- Use the input field to specify the directory path and press the button to create the file.
 
 ## Testing
 
-To run the test suite, use:
-```bash
-npm test
-```
+- Run `npm test` to execute unit tests and verify functionality.
 
-## API Endpoint
-### GET /api/test
-Returns a JSON message:
-- **Response:**
-  - `200 OK`
-  - `{ message: "Application is running" }`
+## Error Handling
 
-### Errors
-- **405 Method Not Allowed**: If you try to access the endpoint with a method other than GET.
-- **404 Not Found**: If you access a route that doesn't exist.
+The app provides meaningful error messages in scenarios where:
+- The directory is not writable.
+- A file named "fdp" already exists in the specified directory.
+
+## Deployment
+
+Follow your organization’s deployment pipeline to deploy this feature to staging and production environments. Ensure to run tests in both environments before going live.

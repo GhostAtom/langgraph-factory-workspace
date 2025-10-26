@@ -1,12 +1,32 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+import React, { useState } from 'react';
+import createFdpFile from './createFile';
 
-// Test endpoint
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'Application is running' });
-});
+function App() {
+  const [directory, setDirectory] = useState('');
+  const [message, setMessage] = useState('');
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+  const handleCreateFile = async () => {
+    try {
+      const result = await createFdpFile(directory);
+      setMessage(result);
+    } catch (error) {
+      setMessage(error);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Create "fdp" File</h1>
+      <input
+        type="text"
+        placeholder="Enter directory path"
+        value={directory}
+        onChange={(e) => setDirectory(e.target.value)}
+      />
+      <button onClick={handleCreateFile}>Create File</button>
+      <p>{message}</p>
+    </div>
+  );
+}
+
+export default App;
