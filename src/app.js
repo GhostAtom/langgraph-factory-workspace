@@ -1,12 +1,7 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+const newFunction = require('./newFunction');
 
-// Test endpoint
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'Application is running' });
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+try {
+  console.log(newFunction('hello world'));
+} catch (error) {
+  console.error(error.message);
+}

@@ -1,45 +1,41 @@
-# Test Endpoint Application
+# New Function Documentation
 
 ## Overview
-This application is a basic Express.js server with a single test endpoint at `/api/test` that returns a message indicating the application is running.
+
+This project implements a new feature that converts a given string input to uppercase. The function is designed to handle only string inputs and will throw an error if the input is not a string.
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Change into the project directory:
-   ```bash
-   cd test-endpoint-app
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
+Ensure the latest version of Node.js is installed along with npm or yarn.
 
-## Running the Application
-
-To start the application, run:
 ```bash
-npm start
+npm install
 ```
-The server will be running at `http://localhost:3000`.
 
-## Testing
+## Usage
 
-To run the test suite, use:
+Run the application using:
+
+```bash
+node src/app.js
+```
+
+## Running Tests
+
+To execute tests, run the following command:
+
 ```bash
 npm test
 ```
 
-## API Endpoint
-### GET /api/test
-Returns a JSON message:
-- **Response:**
-  - `200 OK`
-  - `{ message: "Application is running" }`
+## Function Details
 
-### Errors
-- **405 Method Not Allowed**: If you try to access the endpoint with a method other than GET.
-- **404 Not Found**: If you access a route that doesn't exist.
+- **Purpose**: Converts a string to uppercase.
+- **Inputs**: A string.
+- **Outputs**: The uppercase version of the input string.
+
+## Example
+
+```javascript
+newFunction('example'); // Returns 'EXAMPLE'
+```
