@@ -1,38 +1,64 @@
-const express = require('express');
-const passport = require('passport');
-const session = require('express-session');
-require('./passport-setup');
+const nodemailer = require('nodemailer');
 
-const app = express();
-
-app.use(session({
-  secret: 'your-secret-key',
-  resave: false,
-  saveUninitialized: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.get('/', (req, res) => {
-  res.send('<a href="/auth/google">Authenticate with Google</a>');
-});
-
-app.get('/auth/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}));
-
-app.get('/auth/google/callback', passport.authenticate('google', {
-  failureRedirect: '/'
-}), (req, res) => {
-  res.redirect('/dashboard');
-});
-
-app.get('/dashboard', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
+// Configuration for SMTP
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
   }
-  res.send(`Hello ${req.user.displayName}!`);
 });
 
-app.listen(3000, () => console.log('Server is running on http://localhost:3000'));
+// Send Welcome Email
+function sendWelcomeEmail(to) {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject: 'Welcome to Our Service',
+    text: 'Thank you for creating an account with us!'
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Welcome Email sent: ' + info.response);
+  });
+}
+
+// Send Password Reset Email
+function sendPasswordResetEmail(to, token) {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject: 'Password Reset',
+    text: `Please use the following link to reset your password: https://example.com/reset?token=${token}`
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Password Reset Email sent: ' + info.response);
+  });
+}
+
+// Send Important Updates Email
+function sendImportantUpdatesEmail(to, message) {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject: 'Important Update',
+    text: message
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Important Updates Email sent: ' + info.response);
+  });
+}
+
+module.exports = {
+  sendWelcomeEmail,
+  sendPasswordResetEmail,
+  sendImportantUpdatesEmail
+};
