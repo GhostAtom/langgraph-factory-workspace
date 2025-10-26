@@ -1,17 +1,27 @@
 {
-  "name": "test-endpoint-app",
+  "name": "homepage-project",
   "version": "1.0.0",
-  "description": "A simple Express application with a test endpoint",
-  "main": "src/server.js",
+  "description": "A simple home page.",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "webpack serve --open",
+    "build": "webpack",
     "test": "jest"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "jest": "^27.0.0",
-    "supertest": "^6.1.3"
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2",
+    "jest": "^26.6.3",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/jest-dom": "^5.11.10"
   }
 }
