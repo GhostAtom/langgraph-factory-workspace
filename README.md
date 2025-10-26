@@ -1,41 +1,43 @@
-# User Authentication System
+# Payment Processing System
 
-This project implements a basic user authentication system using Node.js, Express, and MongoDB. It includes functionalities for user registration, login, logout, password reset, and session management.
+## Overview
+The Payment Processing System is a secure and efficient way to handle financial transactions, supporting multiple payment methods with transaction logging and fraud detection capabilities.
 
-## Setup Instructions
+## Getting Started
 
+### Prerequisites
+- Node.js
+- MongoDB
+
+### Installation
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd auth-system
+   git clone https://github.com/your_username/payment-processing-system.git
    ```
-
 2. Install dependencies:
    ```bash
+   cd payment-processing-system
    npm install
    ```
-
-3. Create a `.env` file based on the `.env.example` and fill in your credentials.
-
-4. Run the server:
+3. Set up environment variables in a `.env` file:
    ```bash
-   npm start
+   MONGODB_URI=your_mongodb_uri
+   STRIPE_API_KEY=your_stripe_api_key
+   PAYPAL_CLIENT_ID=your_paypal_client_id
+   PAYPAL_SECRET=your_paypal_secret
    ```
 
-5. Run tests:
-   ```bash
-   npm test
-   ```
+### Running the Application
+```bash
+npm start
+```
 
-## API Endpoints
+### Testing
+Run unit and integration tests:
+```bash
+npm test
+```
 
-- `POST /auth/login`: Logs in a user
-- `POST /auth/logout`: Logs out a user
-- `POST /auth/reset-password`: Sends a password reset email
-- `POST /auth/update-password`: Updates a user's password
-
-## Security Considerations
-
-- Passwords are hashed using `bcrypt` before saving to the database.
-- JWT is used for secure session management.
-- Sensitive data such as database URI and email credentials are stored in environment variables.
+## Project Structure
+- `src/`: Application source code
+- `tests/`: Test cases
