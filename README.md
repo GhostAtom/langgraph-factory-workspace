@@ -1,39 +1,34 @@
-# OAuth2 Authentication
+# User Authentication System
 
 ## Overview
-
-This project adds OAuth2 authentication to an application, allowing users to log in via Google, Facebook, or GitHub.
+This project implements a user authentication system with functionalities for login, logout, and password reset.
 
 ## Setup
 
-1. Ensure Node.js and npm are installed.
-2. Clone the repo and run `npm install` to install dependencies.
-3. Set up your environment variables in a `.env` file as specified in `.env.example`.
+1. Clone the repository:
+```
+git clone <repository-url>
+```
 
-## Running the Application
+2. Install dependencies:
+```
+npm install
+```
 
-- Start the server with `npm start`.
-- Access the application at `http://localhost:3000`.
+3. Configure environment variables (e.g., JWT secret, email credentials).
+
+4. Run the application:
+```
+npm start
+```
+
+## Features
+- **Login**: Authenticate users and provide a JWT token for session management.
+- **Logout**: Endpoint for client-side token invalidation.
+- **Password Reset**: Allows users to reset passwords via email verification.
 
 ## Testing
-
-- Run tests with `npm test`.
-
-## Authentication Providers
-
-- **Google**: /auth/google
-- **Facebook**: /auth/facebook
-- **GitHub**: /auth/github
-
-## Security
-
-- Sessions are managed using express-session.
-- Ensure your session secret is updated and secure.
-
-## Deployment
-
-- Update your CI/CD pipeline to handle environment variables securely.
-
-## Monitoring
-
-- Use monitoring tools to track authentication success rates and potential security issues.
+Run the tests using:
+```
+npm test
+```
