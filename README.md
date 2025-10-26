@@ -1,41 +1,21 @@
-# User Authentication System
+# Configuration API
 
-This project implements a basic user authentication system using Node.js, Express, and MongoDB. It includes functionalities for user registration, login, logout, password reset, and session management.
+## Overview
+This API allows the deletion of configurations from the database.
 
-## Setup Instructions
+## Endpoints
+- **DELETE /api/configs/:id** - Deletes a configuration by its ID. Requires authentication.
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd auth-system
-   ```
+## Setup
+1. Clone the repository.
+2. Run `npm install` to install dependencies.
+3. Set MongoDB URI and JWT secret in `src/config.js`.
+4. Start the server with `node src/server.js`.
+5. To run tests, execute `jest` or `npm test`.
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+## Security
+- Each request must include a valid JWT token in the Authorization header.
 
-3. Create a `.env` file based on the `.env.example` and fill in your credentials.
-
-4. Run the server:
-   ```bash
-   npm start
-   ```
-
-5. Run tests:
-   ```bash
-   npm test
-   ```
-
-## API Endpoints
-
-- `POST /auth/login`: Logs in a user
-- `POST /auth/logout`: Logs out a user
-- `POST /auth/reset-password`: Sends a password reset email
-- `POST /auth/update-password`: Updates a user's password
-
-## Security Considerations
-
-- Passwords are hashed using `bcrypt` before saving to the database.
-- JWT is used for secure session management.
-- Sensitive data such as database URI and email credentials are stored in environment variables.
+## Tests
+- Tests are written using Jest and Supertest.
+- Ensure MongoDB instance is running before executing tests.
