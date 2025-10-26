@@ -1,45 +1,22 @@
-# Test Endpoint Application
+# Yo App Documentation
 
 ## Overview
-This application is a basic Express.js server with a single test endpoint at `/api/test` that returns a message indicating the application is running.
+The Yo app allows users to send a simple 'Yo' to their friends. It features a frontend built with React and a backend with Node.js and Express.
 
-## Installation
+## Setup
+1. Clone the repository.
+2. Run `npm install` to install the necessary dependencies.
+3. Start the backend server with `npm start`.
+4. In another terminal, run the frontend using a command like `npm run frontend`.
+5. Visit `localhost:3000` to start using the Yo app.
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Change into the project directory:
-   ```bash
-   cd test-endpoint-app
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## Running the Application
-
-To start the application, run:
-```bash
-npm start
-```
-The server will be running at `http://localhost:3000`.
+## Features
+- Send a Yo to any friend.
+- Receive and view Yos.
 
 ## Testing
+- Run `npm test` to execute the unit and integration tests.
 
-To run the test suite, use:
-```bash
-npm test
-```
-
-## API Endpoint
-### GET /api/test
-Returns a JSON message:
-- **Response:**
-  - `200 OK`
-  - `{ message: "Application is running" }`
-
-### Errors
-- **405 Method Not Allowed**: If you try to access the endpoint with a method other than GET.
-- **404 Not Found**: If you access a route that doesn't exist.
+## Future Improvements
+- Add support for sending Yos to multiple friends.
+- Integrate with an advanced notification system for real-time alerts.
