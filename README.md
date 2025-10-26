@@ -1,39 +1,25 @@
-# OAuth2 Authentication
+# Configuration Check API
 
 ## Overview
 
-This project adds OAuth2 authentication to an application, allowing users to log in via Google, Facebook, or GitHub.
+This API provides an endpoint to check the current configuration settings of the application, excluding sensitive information.
 
-## Setup
+## Endpoint
 
-1. Ensure Node.js and npm are installed.
-2. Clone the repo and run `npm install` to install dependencies.
-3. Set up your environment variables in a `.env` file as specified in `.env.example`.
+### GET /api/config-check
 
-## Running the Application
+- **Description**: Retrieve the safe configuration of the application.
+- **Authentication**: Requires JWT token.
 
-- Start the server with `npm start`.
-- Access the application at `http://localhost:3000`.
+#### Responses:
+- `200 OK` - Successful retrieval of configuration.
+- `401 Unauthorized` - If no token is provided.
+- `403 Forbidden` - If the token is invalid.
+
+## Environment Variables
+
+- `ACCESS_TOKEN_SECRET` - Secret key for JWT token verification.
 
 ## Testing
 
-- Run tests with `npm test`.
-
-## Authentication Providers
-
-- **Google**: /auth/google
-- **Facebook**: /auth/facebook
-- **GitHub**: /auth/github
-
-## Security
-
-- Sessions are managed using express-session.
-- Ensure your session secret is updated and secure.
-
-## Deployment
-
-- Update your CI/CD pipeline to handle environment variables securely.
-
-## Monitoring
-
-- Use monitoring tools to track authentication success rates and potential security issues.
+Run the tests using `npm test` to verify the functionality of the endpoint.
