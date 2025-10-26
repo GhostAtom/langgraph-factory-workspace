@@ -1,41 +1,49 @@
-# User Authentication System
+# Delete Config Endpoint
 
-This project implements a basic user authentication system using Node.js, Express, and MongoDB. It includes functionalities for user registration, login, logout, password reset, and session management.
+## Overview
 
-## Setup Instructions
+This is a Node.js application built with Express and MongoDB for managing configurations. It includes a secure delete configuration endpoint that allows authorized users to remove configurations from the database.
 
-1. Clone the repository:
+## Getting Started
+
+1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
-   cd auth-system
+   git clone <repo-url>
+   cd <repo-directory>
    ```
 
-2. Install dependencies:
+2. **Install Dependencies**
    ```bash
    npm install
    ```
 
-3. Create a `.env` file based on the `.env.example` and fill in your credentials.
-
-4. Run the server:
+3. **Set up Environment Variables**
+   Create a `.env` file in the root directory and set the following variables:
    ```bash
-   npm start
+   ACCESS_TOKEN_SECRET=your_secret_key
    ```
 
-5. Run tests:
+4. **Run the Application**
+   ```bash
+   node src/server.js
+   ```
+
+5. **Running Tests**
    ```bash
    npm test
    ```
 
 ## API Endpoints
 
-- `POST /auth/login`: Logs in a user
-- `POST /auth/logout`: Logs out a user
-- `POST /auth/reset-password`: Sends a password reset email
-- `POST /auth/update-password`: Updates a user's password
+- **DELETE /config/:id** - Deletes a configuration by ID
+  - Headers: 
+    - Authorization: Bearer `<JWT>`
 
-## Security Considerations
+## Security
 
-- Passwords are hashed using `bcrypt` before saving to the database.
-- JWT is used for secure session management.
-- Sensitive data such as database URI and email credentials are stored in environment variables.
+- JWT Authentication is used to secure endpoints.
+- Ensure your `ACCESS_TOKEN_SECRET` is strong and kept confidential.
+
+## License
+
+This project is licensed under the MIT License.
