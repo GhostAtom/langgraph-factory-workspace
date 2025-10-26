@@ -1,41 +1,34 @@
-# User Authentication System
+# Tests Endpoint API
 
-This project implements a basic user authentication system using Node.js, Express, and MongoDB. It includes functionalities for user registration, login, logout, password reset, and session management.
+## Overview
 
-## Setup Instructions
+This API provides an endpoint to retrieve test data stored in a MongoDB database.
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd auth-system
-   ```
+## Getting Started
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+### Prerequisites
 
-3. Create a `.env` file based on the `.env.example` and fill in your credentials.
+- Node.js
+- MongoDB
 
-4. Run the server:
-   ```bash
-   npm start
-   ```
+### Installation
 
-5. Run tests:
-   ```bash
-   npm test
-   ```
+1. Clone the repository.
+2. Run `npm install` to install dependencies.
+3. Start the server using `npm start`.
 
-## API Endpoints
+### Usage
 
-- `POST /auth/login`: Logs in a user
-- `POST /auth/logout`: Logs out a user
-- `POST /auth/reset-password`: Sends a password reset email
-- `POST /auth/update-password`: Updates a user's password
+- **GET /api/tests**: Retrieve a list of tests. Optional query parameters can be used for filtering and pagination.
 
-## Security Considerations
+## Authentication
 
-- Passwords are hashed using `bcrypt` before saving to the database.
-- JWT is used for secure session management.
-- Sensitive data such as database URI and email credentials are stored in environment variables.
+This endpoint requires a valid token in the Authorization header to access.
+
+## Running Tests
+
+- Run `npm test` to execute unit and integration tests.
+
+## Contributing
+
+Please follow the code of conduct and ensure any changes are covered by tests.

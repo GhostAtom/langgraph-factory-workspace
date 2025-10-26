@@ -1,38 +1,23 @@
 const express = require('express');
-const passport = require('passport');
-const session = require('express-session');
-require('./passport-setup');
+const mongoose = require('mongoose');
+const testRoutes = require('./routes/testRoutes');
 
 const app = express();
 
-app.use(session({
-  secret: 'your-secret-key',
-  resave: false,
-  saveUninitialized: true
-}));
+// Middleware
+app.use(express.json());
 
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.get('/', (req, res) => {
-  res.send('<a href="/auth/google">Authenticate with Google</a>');
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/testdb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-app.get('/auth/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}));
+// Routes
+app.use('/api/tests', testRoutes);
 
-app.get('/auth/google/callback', passport.authenticate('google', {
-  failureRedirect: '/'
-}), (req, res) => {
-  res.redirect('/dashboard');
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-
-app.get('/dashboard', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/');
-  }
-  res.send(`Hello ${req.user.displayName}!`);
-});
-
-app.listen(3000, () => console.log('Server is running on http://localhost:3000'));
