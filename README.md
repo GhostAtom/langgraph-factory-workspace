@@ -1,33 +1,45 @@
-# Simple Test Endpoint
+# Test Endpoint Application
 
-This is a basic Node.js application with a simple test endpoint to verify the application's functionality.
+## Overview
+This application is a basic Express.js server with a single test endpoint at `/api/test` that returns a message indicating the application is running.
 
 ## Installation
 
-To install the necessary dependencies, run:
-
-```
-npm install
-```
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Change into the project directory:
+   ```bash
+   cd test-endpoint-app
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
 ## Running the Application
 
-To start the server, run:
-
-```
+To start the application, run:
+```bash
 npm start
 ```
-
-The application will be running on `http://localhost:3000`.
+The server will be running at `http://localhost:3000`.
 
 ## Testing
 
-To run tests, use:
-
-```
+To run the test suite, use:
+```bash
 npm test
 ```
 
-## Endpoint
+## API Endpoint
+### GET /api/test
+Returns a JSON message:
+- **Response:**
+  - `200 OK`
+  - `{ message: "Application is running" }`
 
-- **GET** `/api/test`: Returns a message "Application is running"
+### Errors
+- **405 Method Not Allowed**: If you try to access the endpoint with a method other than GET.
+- **404 Not Found**: If you access a route that doesn't exist.
