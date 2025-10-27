@@ -1,12 +1,17 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+import React from 'react';
+import YellowButton from './components/YellowButton';
 
-// Test endpoint
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'Application is running' });
-});
+function App() {
+    const handleButtonClick = () => {
+        alert('Button clicked!');
+    };
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+    return (
+        <div className="App">
+            <h1>Welcome to the App</h1>
+            <YellowButton onClick={handleButtonClick}>Click Me</YellowButton>
+        </div>
+    );
+}
+
+export default App;

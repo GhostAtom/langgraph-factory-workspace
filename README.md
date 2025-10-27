@@ -1,45 +1,42 @@
-# Test Endpoint Application
+# Yellow Button Feature
 
-## Overview
-This application is a basic Express.js server with a single test endpoint at `/api/test` that returns a message indicating the application is running.
+This project adds a yellow button to the application, enhancing user interaction and improving the user experience.
 
-## Installation
+## Features
+- A responsive yellow button integrated into the UI.
+- Button triggers a specific action when clicked.
+- Accessible to all users, including those using assistive technologies.
 
-1. Clone the repository:
+## Development
+
+1. Clone the repository and checkout the feature branch:
    ```bash
-   git clone <repository-url>
+   git clone <repository_url>
+   cd <repository>
+   git checkout feature/add-yellow-button
    ```
-2. Change into the project directory:
-   ```bash
-   cd test-endpoint-app
-   ```
-3. Install dependencies:
+
+2. Install the dependencies:
    ```bash
    npm install
    ```
 
-## Running the Application
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-To start the application, run:
-```bash
-npm start
-```
-The server will be running at `http://localhost:3000`.
+## Running Tests
 
-## Testing
-
-To run the test suite, use:
+To execute unit tests, run:
 ```bash
 npm test
 ```
 
-## API Endpoint
-### GET /api/test
-Returns a JSON message:
-- **Response:**
-  - `200 OK`
-  - `{ message: "Application is running" }`
+## Deployment
 
-### Errors
-- **405 Method Not Allowed**: If you try to access the endpoint with a method other than GET.
-- **404 Not Found**: If you access a route that doesn't exist.
+Ensure the build process completes without errors:
+```bash
+npm run build
+```
+Deploy the contents of the `build` folder to your preferred hosting platform.
