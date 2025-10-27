@@ -1,31 +1,52 @@
-# Button Component
+# Red Square Component
 
-This component is a reusable button designed to be used across the application. It adheres to the design specifications provided by the UI/UX team.
+This project implements a reusable React component that displays a red square. The component is designed to be part of a larger UI component library.
 
 ## Features
-- Customizable size: small, medium, large
-- Customizable color: default, primary, secondary
-- States: hover, active, disabled
+- Renders a red square with dimensions of 100x100 pixels by default.
+- Responsive design that maintains aspect ratio when resized.
+- Easily integrates with other UI components.
 
 ## Usage
+
+Import the `RedSquare` component and use it within your React application:
+
 ```jsx
-import Button from './components/Button';
+import RedSquare from './components/RedSquare';
 
 function App() {
   return (
-    <Button onClick={() => console.log('Button clicked!')} color="primary">Click Me</Button>
+    <div>
+      <h1>Red Square Example</h1>
+      <RedSquare />
+      <RedSquare size={150} /> {/* Custom size */}
+    </div>
   );
 }
 ```
 
 ## Development
-To run the tests for this component, use:
+
+### Installation
+1. Clone the repository.
+2. Run `npm install` to install dependencies.
+
+### Running Locally
+- Execute `npm start` to start the development server.
+- Open `http://localhost:9000` in your browser to view the component.
+
+### Testing
+- Run `npm test` to execute tests.
+
+## Deployment
+Build the app for production using:
+
 ```bash
-npm test
+npm run build
 ```
 
-## Accessibility
-This component is designed to be accessible and meets WCAG standards.
+This will create a `dist` folder with the compiled code.
 
 ## License
-MIT
+
+MIT License
