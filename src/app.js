@@ -1,12 +1,16 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+import React from 'react';
+import TopBar from './components/TopBar';
+import './App.css';
 
-// Test endpoint
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'Application is running' });
-});
+function App() {
+  return (
+    <div className="App">
+      <TopBar />
+      <div className="content">
+        {/* Application Content Here */}
+      </div>
+    </div>
+  );
+}
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+export default App;
