@@ -1,45 +1,36 @@
-# Test Endpoint Application
+# Alert Button Feature
 
-## Overview
-This application is a basic Express.js server with a single test endpoint at `/api/test` that returns a message indicating the application is running.
+This project adds a simple button to an HTML page which displays an alert when clicked.
 
-## Installation
+## Getting Started
+
+### Prerequisites
+
+Ensure you have Node.js and npm installed.
+
+### Installation
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone [repository-url]
+   cd repository-name
    ```
-2. Change into the project directory:
-   ```bash
-   cd test-endpoint-app
-   ```
-3. Install dependencies:
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-## Running the Application
+### Running Locally
 
-To start the application, run:
-```bash
-npm start
-```
-The server will be running at `http://localhost:3000`.
+Open `src/index.html` in your browser to see the button.
 
-## Testing
+### Testing
 
-To run the test suite, use:
+Run the following command to execute tests:
 ```bash
 npm test
 ```
 
-## API Endpoint
-### GET /api/test
-Returns a JSON message:
-- **Response:**
-  - `200 OK`
-  - `{ message: "Application is running" }`
+### Deployment
 
-### Errors
-- **405 Method Not Allowed**: If you try to access the endpoint with a method other than GET.
-- **404 Not Found**: If you access a route that doesn't exist.
+Follow your usual build and deployment process to include the `index.html`, `script.js`, and `styles.css` files in your web server setup.
