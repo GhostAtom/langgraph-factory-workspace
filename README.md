@@ -1,45 +1,52 @@
-# Test Endpoint Application
+# Red Square Component
 
-## Overview
-This application is a basic Express.js server with a single test endpoint at `/api/test` that returns a message indicating the application is running.
+This project implements a reusable React component that displays a red square. The component is designed to be part of a larger UI component library.
 
-## Installation
+## Features
+- Renders a red square with dimensions of 100x100 pixels by default.
+- Responsive design that maintains aspect ratio when resized.
+- Easily integrates with other UI components.
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Change into the project directory:
-   ```bash
-   cd test-endpoint-app
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
+## Usage
 
-## Running the Application
+Import the `RedSquare` component and use it within your React application:
 
-To start the application, run:
-```bash
-npm start
-```
-The server will be running at `http://localhost:3000`.
+```jsx
+import RedSquare from './components/RedSquare';
 
-## Testing
-
-To run the test suite, use:
-```bash
-npm test
+function App() {
+  return (
+    <div>
+      <h1>Red Square Example</h1>
+      <RedSquare />
+      <RedSquare size={150} /> {/* Custom size */}
+    </div>
+  );
+}
 ```
 
-## API Endpoint
-### GET /api/test
-Returns a JSON message:
-- **Response:**
-  - `200 OK`
-  - `{ message: "Application is running" }`
+## Development
 
-### Errors
-- **405 Method Not Allowed**: If you try to access the endpoint with a method other than GET.
-- **404 Not Found**: If you access a route that doesn't exist.
+### Installation
+1. Clone the repository.
+2. Run `npm install` to install dependencies.
+
+### Running Locally
+- Execute `npm start` to start the development server.
+- Open `http://localhost:9000` in your browser to view the component.
+
+### Testing
+- Run `npm test` to execute tests.
+
+## Deployment
+Build the app for production using:
+
+```bash
+npm run build
+```
+
+This will create a `dist` folder with the compiled code.
+
+## License
+
+MIT License
