@@ -1,45 +1,16 @@
-# Test Endpoint Application
+# Green Top Bar Feature
 
-## Overview
-This application is a basic Express.js server with a single test endpoint at `/api/test` that returns a message indicating the application is running.
+## Description
+This project adds a green top bar to the application to enhance visual appeal and improve navigation. The top bar is consistent and responsive across all pages.
 
 ## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Change into the project directory:
-   ```bash
-   cd test-endpoint-app
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## Running the Application
-
-To start the application, run:
-```bash
-npm start
-```
-The server will be running at `http://localhost:3000`.
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `npm install` to install dependencies.
+4. Run `npm start` to start the development server.
 
 ## Testing
+- Run `npm test` to execute tests.
 
-To run the test suite, use:
-```bash
-npm test
-```
-
-## API Endpoint
-### GET /api/test
-Returns a JSON message:
-- **Response:**
-  - `200 OK`
-  - `{ message: "Application is running" }`
-
-### Errors
-- **405 Method Not Allowed**: If you try to access the endpoint with a method other than GET.
-- **404 Not Found**: If you access a route that doesn't exist.
+## Deployment
+Ensure the build process is updated and deploy using your CI/CD pipeline.

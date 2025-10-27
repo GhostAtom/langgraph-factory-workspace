@@ -1,17 +1,32 @@
 {
-  "name": "test-endpoint-app",
+  "name": "my-application",
   "version": "1.0.0",
-  "description": "A simple Express application with a test endpoint",
-  "main": "src/server.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "test": "jest"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-scripts": "4.0.3"
   },
   "devDependencies": {
-    "jest": "^27.0.0",
-    "supertest": "^6.1.3"
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/jest-dom": "^5.11.6"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
